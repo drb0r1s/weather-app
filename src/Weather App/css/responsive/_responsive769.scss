@@ -1,0 +1,39 @@
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .main {
+        .weather {
+            .city {
+                .forecast-info {
+                    .temp-info {
+                        height: 300px;
+                    }
+
+                    .pressure-info {
+                        height: 350px;
+                    }
+                }
+            }
+            
+            .loading-city {
+                min-width: 500px;
+                margin-left: -250px;
+
+                .loading-circle {
+                    height: 50px;
+                    width: 50px;
+                    border: 12px solid transparent;
+                    border-top: 12px solid black;
+                }
+
+                strong {
+                    font-size: set-size(md);
+                }
+            }
+        }
+
+        .error-modal {
+            strong {
+                font-size: set-size(md);
+            }
+        }
+    }
+}

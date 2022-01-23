@@ -1,0 +1,19 @@
+.loading {
+    @include flex-center;
+    height: 100vh;
+
+    .loader {
+        height: 200px;
+        width: 200px;
+        background: transparent;
+        border: 20px solid transparent;
+        border-top: 20px solid black;
+        border-radius: 50%;
+        animation: rotating 1s linear infinite;
+
+        @keyframes rotating {
+            0% { transform: rotate(0); }
+            100% { transform: rotate(360deg); }
+        }
+    }
+}

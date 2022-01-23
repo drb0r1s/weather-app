@@ -1,0 +1,74 @@
+$defLightShadow: 3px 3px 15px 5px rgba(0,0,0,0.3);
+$defShadow: 3px 3px 15px 5px rgba(0,0,0,0.5);
+$defStrongShadow: 3px 3px 15px 5px rgba(0,0,0,0.7);
+$defInnerShadow: inset 0px 0px 15px 5px rgba(0,0,0,0.5);
+$defWhiteShadow: 3px 3px 15px 5px rgba(255,255,255,0.5);
+
+$defSizeArray: (
+    "xs": 10px,
+    "sm": 15px,
+    "md": 20px,
+    "lg": 25px,
+    "xl": 30px,
+    "xxl": 35px,
+    "heading": 50px
+);
+
+@function set-size($size) {
+    @return map-get($defSizeArray, $size);
+}
+
+@mixin flex-center($direction: row, $spacing: center) {
+    display: flex;
+    flex-direction: $direction;
+    align-items: center;
+    justify-content: $spacing;
+}
+
+@mixin more-info {
+    @include flex-center(column, space-around);
+    height: 200px;
+    background: white;
+    border: 3px solid black;
+    box-shadow: $defInnerShadow;
+    position: relative;
+    top: 0;
+    margin: 20px 0;
+    padding: 10px 15px;
+    transition: 500ms;
+
+    &:hover {
+        border: 3px dashed black;
+        box-shadow: $defWhiteShadow;
+        top: -10px;
+        filter: invert(1);
+    }
+}
+
+@mixin more-info-h4 {
+    color: black;
+    font-size: set-size(xxl);
+    text-align: center;
+    text-transform: capitalize;
+    letter-spacing: 5px;
+}
+
+@font-face {
+    font-family: weatherFont;
+    src: url("../Oswald-Medium.ttf");
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: weatherFont;
+}
+
+@import "./main";
+@import "./loading";
+
+@import "./responsive/responsive319";
+@import "./responsive/responsive320";
+@import "./responsive/responsive481";
+@import "./responsive/responsive769";

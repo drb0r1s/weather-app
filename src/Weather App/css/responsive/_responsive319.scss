@@ -1,0 +1,139 @@
+@media screen and (max-width: 319px) {
+    .main {
+        .weather {
+            .weather-holder {
+                width: 90vw;
+
+                h1 {
+                    font-size: 40px;
+                    text-align: center;
+                }
+
+                form {
+                    flex-direction: column;
+
+                    input {
+                        width: 200px;
+                        font-size: 25px;
+                    }
+
+                    button {
+                        font-size: 25px;
+                    }
+                }
+            }
+
+            .city {
+                width: 99vw;
+                
+                .sun {
+                    flex-direction: column;
+                    justify-content: center;
+                    width: 60vw;
+
+                    p {
+                        text-align: center;
+                    }
+                }
+
+                .forecast-holder {
+                    width: 95vw;
+                }
+                
+                .forecast-info {
+                    width: 98vw;
+                    
+                    h5 {
+                        font-size: 30px;
+                    }
+                    
+                    .temp-info {
+                        height: 450px;
+                        width: 80vw;
+
+                        h4 {
+                            font-size: 25px;
+                        }
+
+                        strong {
+                            font-size: 20px;
+                            margin: 10px 0;
+                        }
+
+                        p {
+                            font-size: 20px;
+                        }
+
+                        .temp-min-max {
+                            flex-direction: column;
+                            margin: 10px 0;
+                        }
+                    }
+
+                    .pressure-info {
+                        height: 480px;
+
+                        h4 {
+                            font-size: 25px;
+                        }
+
+                        p {
+                            font-size: 20px;
+                        }
+
+                        .atmospheric-pressure h5 {
+                            font-size: 20px;
+                        }
+                    }
+
+                    .other-info {
+                        height: 250px;
+
+                        h4 {
+                            font-size: 25px;
+                        }
+
+                        p {
+                            font-size: 20px;
+                        }
+                    }
+                }
+            }
+            
+            .loading-city {
+                flex-direction: column;
+                height: 250px;
+                max-width: 250px;
+                min-width: 250px;
+                margin-top: -125px;
+                margin-left: -125px;
+
+                .loading-circle {
+                    height: 50px;
+                    width: 50px;
+                    border: 12px solid transparent;
+                    border-top: 12px solid black;
+                }
+
+                strong {
+                    font-size: set-size(md);
+                    text-align: center;
+                    overflow-wrap: break-word;
+                    margin-top: 20px;
+                }
+
+                span {
+                    overflow-wrap: break-word;
+                }
+            }
+        }
+
+        .error-modal {
+            left: 0;
+            
+            strong {
+                font-size: set-size(sm);
+            }
+        }
+    }
+}

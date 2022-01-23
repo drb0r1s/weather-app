@@ -1,0 +1,485 @@
+.main {
+    @include flex-center;
+    min-height: 100vh;
+    background: linear-gradient(
+        rgba(0, 0, 0, 0.5),
+        rgba(0, 0, 0, 0.5)
+    ), url("../images/weather-bg.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    position: relative;
+    padding: 20px 30px;
+
+    .weather {
+        @include flex-center(column, center);
+        
+        .weather-holder {
+            @include flex-center(column, center);
+            width: 50vw;
+            background: white;
+            border-radius: 20px;
+            border-top-right-radius: 5px;
+            box-shadow: $defShadow;
+            position: relative;
+            top: 0;
+            transition: 500ms;
+
+            &:hover {
+                top: -10px;
+                border-top-right-radius: 20px;
+                border-top-left-radius: 5px;
+                box-shadow: $defStrongShadow;
+            }
+    
+            h1 {
+                color: black;
+                font-size: set-size(heading);
+                text-transform: capitalize;
+                letter-spacing: 10px;
+                user-select: none;
+            }
+    
+            form {
+                @include flex-center;
+                margin: 10px 0;
+    
+                input {
+                    color: black;
+                    font-size: set-size(lg);
+                    text-align: center;
+                    background: transparent;
+                    border: 1px solid transparent;
+                    border-bottom: 1px solid black;
+                    outline: none;
+                    position: relative;
+                    top: 0;
+                    margin: 10px;
+                    transition: 300ms;
+
+                    &:hover {
+                        border: 1px dashed black;
+                        top: -5px;
+                        box-shadow: $defShadow;
+                    }
+
+                    &:focus {
+                        border: 1px solid black;
+                        top: -5px;
+                        box-shadow: $defShadow;
+                    }
+                    
+                    &::placeholder {
+                        text-transform: capitalize;
+                    }
+                }
+    
+                button {
+                    color: white;
+                    font-size: set-size(md);
+                    text-transform: uppercase;
+                    letter-spacing: 3px;
+                    background: black;
+                    border: 1px solid white;
+                    cursor: pointer;
+                    position: relative;
+                    top: 0;
+                    padding: 5px 10px;
+                    transition: 300ms;
+
+                    &:hover {
+                        color: black;
+                        background: transparent;
+                        border: 1px solid black;
+                        top: -5px;
+                        box-shadow: $defShadow;
+                    }
+                }
+            }
+
+            .signature {
+                @include flex-center;
+                text-decoration: none;
+                margin: 10px 0;
+
+                p {
+                    color: black;
+                    font-size: set-size(md);
+                }
+
+                img {
+                    height: 40px;
+                    width: auto;
+                }
+            }
+        }
+
+        .loading-city {
+            @include flex-center;
+            flex-wrap: wrap;
+            height: 100px;
+            min-width: 750px;
+            background: white;
+            border: 3px solid black;
+            box-shadow: $defShadow;
+            margin-top: -50px;
+            margin-left: -375px;
+            opacity: 0;
+            position: fixed;
+            top: 40%;
+            left: 50%;
+            padding: 10px 15px;
+            transition: 300ms;
+            z-index: 10;
+
+            .loading-circle {
+                height: 75px;
+                width: 75px;
+                border: 15px solid transparent;
+                border-top: 15px solid black;
+                border-radius: 50%;
+                animation: rotating 500ms linear infinite;
+
+                @keyframes rotating {
+                    0% { transform: rotate(0); }
+                    100% { transform: rotate(360deg); }
+                }
+            }
+            
+            strong {
+                color: black;
+                font-size: set-size(xl);
+                margin: 0 20px;
+            }
+
+            span {
+                color: white;
+                text-transform: capitalize;
+                background: black;
+                padding: 3px 5px;
+            }
+        }
+
+        .city {
+            @include flex-center(column, center);
+            width: 80vw;
+            background: white;
+            border-radius: 20px;
+            border-top-left-radius: 5px;
+            box-shadow: $defShadow;
+            opacity: 0;
+            position: relative;
+            top: -10px;
+            margin-top: 30px;
+            padding: 15px 10px;
+            transition: 500ms;
+
+            &:hover {
+                top: 10px !important;
+                border-top-left-radius: 20px;
+                border-top-right-radius: 5px;
+                box-shadow: $defStrongShadow;
+            }
+
+            h2 {
+                color: black;
+                font-size: set-size(xxl);
+                text-align: center;
+                letter-spacing: 5px;
+                border-bottom: 1px solid black;
+            }
+
+            p {
+                color: black;
+                font-size: set-size(lg);
+                text-align: center;
+                text-transform: capitalize;
+                letter-spacing: 3px;
+            }
+
+            .sun {
+                @include flex-center(row, space-between);
+                width: 40vw;
+                margin: 10px 0;
+
+                div {
+                    @include flex-center;
+
+                    img {
+                        height: 50px;
+                        width: auto;
+                    }
+                    
+                    p {
+                        color: black;
+                        font-size: set-size(md);
+                        text-transform: capitalize;
+                        margin: 0 10px;
+                    }
+                }
+            }
+
+            .forecast-holder {
+                @include flex-center;
+                height: 350px;
+                width: 70vw;
+                border: 5px double black;
+                box-shadow: $defInnerShadow;
+                overflow: hidden;
+                position: relative;
+                padding: 10px 5px;
+                user-select: none;
+
+                .forecast {
+                    @include flex-center;
+                    cursor: grab;
+                    position: absolute;
+                    left: 0;
+
+                    .hour-block {
+                        @include flex-center(column, space-between);
+                        height: 300px;
+                        width: 350px;
+                        background: white;
+                        border: 1px solid black;
+                        border-radius: 10px;
+                        position: relative;
+                        top: 0;
+                        margin: 0 5px;
+                        padding: 15px 10px;
+                        transition: 300ms;
+
+                        &:hover {
+                            top: -10px;
+                            box-shadow: $defWhiteShadow;
+                            filter: invert(1);
+                        }
+
+                        .time-date {
+                            @include flex-center(column, center);
+                            
+                            h3 {
+                                color: black;
+                                font-size: set-size(lg);
+                                letter-spacing: 5px;
+                            }
+    
+                            strong {
+                                color: black;
+                                font-size: set-size(sm);
+                                letter-spacing: 3px;
+                            }
+                        }
+
+                        .temp-basic {
+                            @include flex-center(column, center);
+                            border: 3px dashed black;
+                            padding: 5px 10px;
+                            
+                            p {
+                                color: black;
+                                font-size: set-size(xxl);
+                                font-weight: bold;
+                            }
+    
+                            span {
+                                color: black;
+                                font-size: set-size(md);
+                                text-transform: capitalize;
+                            }
+                        }
+
+                        .temp-range {
+                            @include flex-center;
+
+                            p {
+                                color: black;
+                                font-size: set-size(md);
+                                text-transform: uppercase;
+                                margin: 0 10px;
+                            }
+                        }
+
+                        .humidity-pressure {
+                            @include flex-center;
+                            
+                            p {
+                                color: black;
+                                font-size: set-size(md);
+                                text-align: center;
+                                text-transform: capitalize;
+                                margin: 0 10px;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .forecast-info {
+                @include flex-center(column, center);
+                width: 60vw;
+                border: 10px double black;
+                border-radius: 10px;
+                border-top-right-radius: 50px;
+                box-shadow: $defLightShadow;
+                position: relative;
+                top: 0;
+                margin-top: 30px;
+                padding: 20px 15px;
+                transition: 500ms;
+
+                &:hover {
+                    border-radius: 50px;
+                    border-top-right-radius: 10px;
+                    box-shadow: $defShadow;
+                }
+
+                h3, h4, h5 {
+                    color: black;
+                    font-size: set-size(xxl);
+                    text-align: center;
+                    letter-spacing: 5px;
+                    font-weight: bold;
+                }
+
+                h4 {
+                    font-size: set-size(xl);
+                    border-bottom: 3px solid black;
+                }
+
+                h5 {
+                    text-transform: uppercase;
+                    margin: 10px 0;
+                }
+
+                span {
+                    color: white;
+                    background: black;
+                    padding: 3px 5px;
+                }
+
+                .temp-info {
+                    @include more-info;
+                    height: 220px;
+
+                    h4 {
+                        @include more-info-h4;
+                    }
+
+                    strong {
+                        color: black;
+                        font-size: set-size(lg);
+                        text-align: center;
+                        text-transform: capitalize;
+                        letter-spacing: 3px;
+                    }
+
+                    p {
+                        color: black;
+                        font-size: set-size(lg);
+                        text-align: center;
+                        text-transform: capitalize;
+                        letter-spacing: 2px;
+                    }
+
+                    .temp-min-max {
+                        @include flex-center;
+
+                        p {
+                            color: black;
+                            font-size: set-size(md);
+                            text-transform: capitalize;
+                            text-align: center;
+                            margin: 0 10px;
+                        }
+                    }
+                }
+
+                .pressure-info {
+                    @include more-info;
+                    height: 270px;
+
+                    h4 {
+                        @include more-info-h4;
+                        margin-bottom: 5px
+                    }
+                    
+                    p {
+                        color: black;
+                        font-size: set-size(lg);
+                        text-align: center;
+                        text-transform: capitalize;
+                        font-weight: bold;
+                    }
+
+                    .atmospheric-pressure {
+                        @include flex-center(column, center);
+                        margin: 10px 0;
+                        
+                        h5 {
+                            color: black;
+                            font-size: set-size(lg);
+                            text-align: center;
+                            letter-spacing: 3px;
+                            margin-bottom: 5px;
+                        }
+
+                        p {
+                            color: black;
+                            font-size: set-size(md);
+                            text-transform: capitalize;
+                            margin: 5px 0;
+                        }
+                    }
+                }
+
+                .other-info {
+                    @include more-info;
+
+                    h4 {
+                        @include more-info-h4;
+                    }
+
+                    p {
+                        color: black;
+                        font-size: set-size(lg);
+                        text-align: center;
+                        text-transform: capitalize;
+                        font-weight: bold;
+                    }
+                }
+            }
+        }
+    }
+
+    .error-modal {
+        @include flex-center(column, center);
+        background: white;
+        border: 1px solid black;
+        box-shadow: $defShadow;
+        opacity: 0;
+        position: absolute;
+        top: -10px;
+        left: 10px;
+        padding: 5px 10px;
+        transition: 300ms;
+        z-index: 20;
+
+        strong {
+            color: black;
+            font-size: set-size(xl);
+            font-weight: bold;
+
+            span {
+                color: white;
+                background: black;
+                padding: 3px 5px;
+            }
+        }
+    }
+}
+
+#active-forecast {
+    top: -10px;
+    box-shadow: $defWhiteShadow;
+    filter: invert(1);
+}

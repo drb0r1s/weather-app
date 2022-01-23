@@ -1,0 +1,103 @@
+@media screen and (min-width: 320px) and (max-width: 480px) {
+    .main {
+        .weather {
+            .weather-holder {
+                width: 90vw;
+
+                h1 {
+                    font-size: 45px;
+                    text-align: center;
+                }
+
+                form {
+                    flex-direction: column;
+
+                    input {
+                        font-size: 27px;
+                    }
+
+                    button {
+                        font-size: 25px;
+                    }
+                }
+            }
+
+            .city {
+                width: 95vw;
+                
+                .sun {
+                    flex-direction: column;
+                    justify-content: center;
+                    width: 60vw;
+
+                    p {
+                        text-align: center;
+                    }
+                }
+
+                .forecast-holder {
+                    width: 90vw;
+                }
+                
+                .forecast-info {
+                    width: 90vw;
+                    
+                    .temp-info {
+                        height: 400px;
+                        width: 80vw;
+
+                        strong {
+                            margin: 10px 0;
+                        }
+
+                        .temp-min-max {
+                            flex-direction: column;
+                            margin: 10px 0;
+                        }
+                    }
+
+                    .pressure-info {
+                        height: 480px;
+                    }
+
+                    .other-info {
+                        height: 250px;
+                    }
+                }
+            }
+            
+            .loading-city {
+                flex-direction: column;
+                height: 250px;
+                max-width: 280px;
+                min-width: 280px;
+                margin-top: -125px;
+                margin-left: -140px;
+
+                .loading-circle {
+                    height: 100px;
+                    width: 100px;
+                    border: 15px solid transparent;
+                    border-top: 15px solid black;
+                }
+
+                strong {
+                    font-size: set-size(lg);
+                    text-align: center;
+                    overflow-wrap: break-word;
+                    margin-top: 20px;
+                }
+
+                span {
+                    overflow-wrap: break-word;
+                }
+            }
+        }
+
+        .error-modal {
+            strong {
+                font-size: set-size(sm);
+            }
+        }
+    }
+}
